@@ -1,0 +1,18 @@
+# You can specify a custom docker image from Docker Hub as your build environment.
+# image: docker-image:tag
+pipelines:
+  default:
+    - step:
+        script:
+          - echo "Update system components and dependencies"
+          - apt-get update && apt-get install -y redis-server libmecab-dev mecab mecab-ipadic-utf8 python-dev python-setuptools python-pip
+          - echo "Launch Redis server"
+          - redis-server &
+          - pip --version
+          - echo "Install Feet and launch test suite"
+          - pip install -U tox
+          - pip install nltk
+          - python -m nltk.downloader averaged_perceptron_tagger maxent_ne_chunker maxent_treebank_pos_tagger punkt words
+          - tox --version
+          - tox
+          - echo "This is not the end, it's just the beginning!"
