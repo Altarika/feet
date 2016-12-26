@@ -1,0 +1,17 @@
+version: '2'
+services:
+    redis:
+        image: redis:3.2.6
+    feet:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: altarika/feet:latest
+        container_name: feet
+        environment:
+            - VIRTUAL_ENV=/usr/local/
+        links:
+          - redis
+        ports:
+          - 5000:5000
+        command: /usr/local/feet/bin/feet run

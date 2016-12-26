@@ -1,0 +1,28 @@
+# Configuration file for the Feet application
+# This file belongs in: /etc/feet.yaml
+
+# Basic Flags
+debug: true
+
+# Logging Information
+logfile: 'feet.log'
+loglevel: 'DEBUG'
+
+# Timeout processing
+timeout: 180
+
+# Redis database Information
+database:
+    host: localhost
+    port: 6379
+    prefix: feet
+
+# API Server
+server:
+    host: 127.0.0.1
+    port: 8000
+
+# Japanese POS Tagger MeCab
+mecab:
+    mecabdict= '/usr/lib/mecab/dic/mecab-ipadic-neologd'
+

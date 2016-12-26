@@ -1,0 +1,24 @@
+## Configuration
+confire==0.2.0
+PyYAML==3.11
+python-dotenv
+
+## Command Line
+commis==0.2
+colorama==0.3.6
+
+## Database
+redis
+
+## Web application
+tornado
+
+## NLP
+nltk
+mecab-python
+langdetect
+dateparser
+numpy
+
+## Documentation
+mkdocs

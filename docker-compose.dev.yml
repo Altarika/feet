@@ -1,0 +1,11 @@
+# Dev overrides
+# usage:
+# docker-compose -f docker-compose.yml -f docker-compose.dev.yml
+version: '2'
+services:
+    redis:
+        image: redis:3.2.6
+    feet:
+        volumes:
+            - .:/usr/local/feet
+        env_file: ./.env
