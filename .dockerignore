@@ -34,10 +34,6 @@ pip-delete-this-directory.txt
 .tox/
 .coverage
 .cache
-nosetests.xml
-coverage.xml
-tests/*
-tox.ini
 
 # Translations
 *.mo
@@ -46,7 +42,7 @@ tox.ini
 *.log
 
 # Sphinx documentation
-docs/*
+docs/
 
 # PyBuilder
 target/
