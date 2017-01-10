@@ -1,0 +1,14 @@
+site_name: feet
+repo_name: GitHub
+repo_url: https://github.com/Altarika/feet/
+site_description: Feet is a tool for extracting terms from a text according to dictionaries.
+site_author: Altarika
+copyright: Copyright &copy; 2016 <a href="https://github.com/romaryd">Romary Dupuis</a>, Maintained by <a href="http://www.altarika.com/">Altarika</a>
+theme: yeti
+
+pages:
+  - Home: index.md
+  - Changelog: changelog.md
+  - Contributing: contributing.md
+  - License: license.md
+

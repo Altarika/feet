@@ -1,0 +1,29 @@
+language: python
+python: 2.7
+cache: pip
+services:
+  - redis-server
+before_install:
+  - sudo apt-get update -qq
+  - wget http://ftp.sjtu.edu.cn/ubuntu/pool/universe/m/mecab/libmecab2_0.996-1.1_amd64.deb
+  - sudo dpkg -i  libmecab2_0.996-1.1_amd64.deb
+  - wget http://ftp.sjtu.edu.cn/ubuntu/pool/universe/m/mecab/libmecab-dev_0.996-1.1_amd64.deb
+  - sudo dpkg -i libmecab-dev_0.996-1.1_amd64.deb
+  - wget http://ftp.sjtu.edu.cn/ubuntu/pool/universe/m/mecab/mecab-utils_0.996-1.1_amd64.deb
+  - sudo dpkg -i mecab-utils_0.996-1.1_amd64.deb
+  - sudo apt-get install -y mecab-ipadic-utf8
+install:
+  - pip install nltk
+  - python -m nltk.downloader averaged_perceptron_tagger maxent_ne_chunker maxent_treebank_pos_tagger punkt words
+  - pip install -U tox
+  - pip install coveralls
+script:
+  - tox
+after_script:
+  - coveralls
+notifications:
+  email:
+    recipients:
+      - romary.dupuis@altarika.com
+    on_success: change
+    on_failure: always

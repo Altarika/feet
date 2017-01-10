@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+# feet
+# Management and administration script for Feet
+#
+# Author:   Romary Dupuis <romary.dupuis@altarika.com>
+#
+# Copyright (C) 2016 Romary Dupuis
+# For license information, see LICENSE.txt
+
+from feet.__main__ import FeetApp
+
+if __name__ == '__main__':  # pragma: no cover
+    app = FeetApp.load()
+    app.execute()

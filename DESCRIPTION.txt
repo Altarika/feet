@@ -1,0 +1,24 @@
+Feet is a tool that extract terms from a text according to dictionaries.
+A specific dictionary can be the categorization of terms that belong to the same entity family. So we will also mention a dictionary as an entity.
+
+Everything that Feet needs resides in a distributed in-memory database system [Redis](https://www.redis.io).
+So It's fast and scalable.
+
+The underlying natural language processing is provided by Python NLTK package.
+Japanese has been implemented thanks to the Mecab POS tagger.
+
+On-going work for next version:
+
+* project packaging
+* much more test cases
+* implement various technics for disambiguition of entities by semantics
+analysis including the use of thesauri and machine learning.
+* compliant to JSON API interface
+* definition of relationships between entities according to grammatical patterns including but not only the definition of intents, facts etc.
+* additional languages support: Chinese and Korean
+
+As a bonus, there is a function to extract dates from text in Japanese. Next
+version may feature a multi-lingual dates extraction function.
+
+Last but not the least this is WIP so rely on it at your own risk. We should
+get a reliable version within a few weeks, along with new exciting features.
