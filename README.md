@@ -1,4 +1,6 @@
 # Welcome to feet
+
+[![Join the chat at https://gitter.im/altarika-feet/Lobby](https://badges.gitter.im/altarika-feet/Lobby.svg)](https://gitter.im/altarika-feet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 **Fast Entitiy Extraction Tool**
 
 [![Build Status][travis_img]][travis_href]
