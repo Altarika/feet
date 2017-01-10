@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Feet is a tool for extracting terms from a text according to dictionaries.">
+        <meta name="author" content="Altarika">
+        
+        <link rel="shortcut icon" href="./img/favicon.ico">
+
+	<title>feet</title>
+
+        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+        <link href="./css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href=".">feet</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li class="active">
+                    <a href=".">Home</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="changelog/">Changelog</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="contributing/">Contributing</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="license/">License</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="next" >
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="changelog/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://github.com/Altarika/feet/">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#welcome-to-feet">Welcome to feet</a></li>
+        
+            <li><a href="#overview">Overview</a></li>
+        
+            <li><a href="#quick-start">Quick Start</a></li>
+        
+            <li><a href="#read-the-doc">Read the doc</a></li>
+        
+            <li><a href="#cli">CLI</a></li>
+        
+            <li><a href="#http-api-server-tools">HTTP API server tools</a></li>
+        
+            <li><a href="#how-to-use">How to use</a></li>
+        
+            <li><a href="#deploy-with-docker">Deploy with Docker</a></li>
+        
+            <li><a href="#getting-help">Getting help</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="welcome-to-feet">Welcome to feet</h1>
+<p><strong>Fast Entitiy Extraction Tool</strong></p>
+<p><a href="https://travis-ci.org/Altarika/feet/"><img alt="Build Status" src="https://travis-ci.org/Altarika/feet.svg?branch=develop" /></a>
+<a href="https://coveralls.io/github/Altarika/feet?branch=develop"><img alt="Coverage Status" src="https://coveralls.io/repos/github/Altarika/feet/badge.svg?branch=develop" /></a>
+<a href="https://landscape.io"><img alt="Code Health" src="https://landscape.io/github/Altarika/feet/develop/landscape.svg?style=flat" /></a></p>
+<hr />
+<p><strong>Complete documentation coming soon!</strong></p>
+<h2 id="overview">Overview</h2>
+<p>Feet is a tool for extracting entities from a text according to dictionaries.
+A dictionary gathers terms that are representative of an entity type, e.b. city, country, people or company.</p>
+<p>Feet takes benefits of the distributed in-memory database system <a href="https://www.redis.io">Redis</a>.
+So It's fast and scalable.</p>
+<p>The underlying natural language processing is provided by Python NLTK package.
+Japanese has been implemented thanks to the Mecab POS tagger.</p>
+<p>On-going work for next version:</p>
+<ul>
+<li>better project packaging and documentation</li>
+<li>more testing</li>
+<li>implement various technics for disambiguition of entities by semantics
+analysis including the use of thesauri and machine learning.</li>
+<li>compliant to JSON API interface</li>
+<li>definition of relationships between entities according to grammatical patterns including but not only the definition of intents, facts etc.</li>
+<li>additional languages support: Chinese and Korean</li>
+</ul>
+<p>As a bonus, there is a function to extract dates from text in Japanese. Next
+version may feature a multi-lingual dates extraction function.</p>
+<p>Last but not the least this is WIP so rely on it at your own risk. We should
+get a reliable version within a few weeks, along with new exciting features.</p>
+<h2 id="quick-start">Quick Start</h2>
+<p>feet supports Python versions 2.7+ and pypy.</p>
+<h3 id="installing-python">Installing Python</h3>
+<p>Install <a href="http://www.python.org">Python</a> by downloading an installer appropriate for your system from
+<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a> and running it.</p>
+<h3 id="installing-pip">Installing pip</h3>
+<p>If you're using a recent version of Python, pip is most likely installed
+by default. However, you may need to upgrade pip to the lasted version:</p>
+<pre><code class="bash">$ pip install --upgrade pip
+</code></pre>
+
+<p>If you need to install [pip] for the first time, download [get-pip.py].
+Then run the following command to install it:</p>
+<pre><code class="bash">$ python get-pip.py
+</code></pre>
+
+<h3 id="quick-start_1">Quick start</h3>
+<p><strong>Check your locals</strong></p>
+<pre><code class="bash">export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+</code></pre>
+
+<p><strong>Setup Redis</strong></p>
+<p>Use of <a href="https://www.redis.io">Redis</a> is mandatory and v3+ is recommended. </p>
+<p><strong>Setup Mecab for Japanese</strong></p>
+<p>Setup <a href="http://mecab.googlecode.com/svn/trunk/mecab/doc/index.html">MeCaB</a></p>
+<p>You can either use ipadic-utf8 dictionary or neologd dictionary:</p>
+<ul>
+<li><code>apt-get install mecab-ipadic-utf8</code></li>
+<li>Setup <a href="https://github.com/neologd/mecab-ipadic-neologd">neologd dictionary</a></li>
+</ul>
+<p><strong>Setup Feet</strong></p>
+<p>Download latest version of Feet repository.</p>
+<pre><code class="bash">$ git clone https://github.com/Altarika/feet.git
+$ cd feet
+$ python setup.py install
+</code></pre>
+
+<p>or from pip (TODO):</p>
+<pre><code class="bash">$ pip install feet
+</code></pre>
+
+<p><strong>For development</strong></p>
+<p>Create a virtualenv and install dependencies</p>
+<pre><code class="bash">$ virtualenv venv
+$ source venv/bin/activate
+</code></pre>
+
+<pre><code class="bash">$ echo $(pwd) &gt; project_venv/lib/python2.7/site-packages/feet.pth
+</code></pre>
+
+<p>Install Python dependencies</p>
+<pre><code class="bash">$ pip install -r requirements.txt
+</code></pre>
+
+<p>Check the changelog:</p>
+<pre><code class="bash">$ git log --oneline --decorate --color
+</code></pre>
+
+<p><strong>Setup NLTK</strong></p>
+<p>Depending on the languages you want to use you have to download the necessary
+data for NLTK to support them. Please see the documentation of <a href="http://www.nltk.org/">NLTK</a>.
+We are using NLTK version 3.0.</p>
+<pre><code class="bash">$ python -m nltk.downloader averaged_perceptron_tagger maxent_ne_chunker maxent_treebank_pos_tagger punkt words
+
+</code></pre>
+
+<p><strong>Configuration</strong></p>
+<p>Setup your environment parameters in feet.yaml after copying config/feet_example.yaml</p>
+<p>You can locate the configuration file at: 
+/etc/feet.yml
+~/.feet.yaml
+conf/feet.yaml</p>
+<p>Content of configuration file:</p>
+<pre><code class="yaml"># Basic Flags
+debug: true
+
+# Logging Information
+logfile: 'feet.log'
+loglevel: 'DEBUG'
+
+# Timeout processing
+timeout: 180
+
+# Redis database Information
+database:
+    host: localhost
+    port: 6379
+    prefix: feet
+
+# API Server
+server:
+    host: 127.0.0.1
+    port: 8000
+
+# Japanese POS Tagger MeCab
+mecab:
+    mecabdict= 'usr/local/lib/mecab/dic/mecab-ipadic-neologd'
+</code></pre>
+
+<p>You can also use a .env file:</p>
+<pre><code>MECAB_DICT=/usr/local/lib/mecab/dic/mecab-ipadic-neologd
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_DICT_DB=0
+REDIS_PREFIX=feet
+DEBUG=True
+SERVER_HOST=localhost
+SERVER_PORT=8888
+LOG_FILE=feet.log
+LOG_LEVEL=INFO
+TIMEOUT=180
+</code></pre>
+
+<p>If both a YAML and a .env file are available, YAML file will override common
+environment variables.</p>
+<p><strong>Testing</strong></p>
+<p>Run the tests to make sure everything is OK.</p>
+<pre><code class="bash">$ pip install ./requirements/test.txt
+$ nosetests -v --with-coverage --cover-package=feet --cover-inclusive --cover-erase tests ./feet/www/tests/
+</code></pre>
+
+<p>or with Tornado testing tools:</p>
+<pre><code class="bash">$ python -m tornado.testing  discover
+</code></pre>
+
+<p>or with setuptools</p>
+<pre><code class="bash">$ python setup.py test
+</code></pre>
+
+<h2 id="read-the-doc">Read the doc</h2>
+<p>You can generate a documentation with mkdocs tool.</p>
+<p>Install the mkdocs package using pip:</p>
+<pre><code class="bash">$ pip install mkdocs
+</code></pre>
+
+<p>Install Yeti theme from mkdocs-bootswatch: </p>
+<pre><code class="bash">$ pip install mkdocs-bootswatch
+</code></pre>
+
+<p>You should now have the mkdocs command installed on your system. 
+Run mkdocs --version to check that everything worked okay.</p>
+<pre><code class="bash">$ mkdocs --version
+mkdocs, version 0.15.2
+</code></pre>
+
+<p>Launch the documentation server:</p>
+<pre><code class="bash">$ mkdocs serve
+</code></pre>
+
+<p>Then open your browser on http://127.0.0.1:8000/</p>
+<h2 id="cli">CLI</h2>
+<p>Follow the Quick Start instructions. Make sure a redis-server is running.
+Make and update your favorite configuration file (.env or yml).</p>
+<p>From feet directory you can use <code>$ ./bin/feet</code> command or you can directly
+call <code>$ feet</code> if you have been through complete installation via setuptools.</p>
+<p><strong>Load</strong> entity file with CLI:</p>
+<pre><code class="bash">$ feet load --registry=my_registry --entity=country --csv=./tests/test_data/countries_en.csv
+</code></pre>
+
+<p><strong>Drop</strong> list of terms for company with CLI:</p>
+<pre><code class="bash">$ feet drop --registry=my_registry --entity=country
+</code></pre>
+
+<p><strong>Extract</strong> entities from a text:</p>
+<pre><code class="bash">$ feet extract --registry=my_registry --entity=country --grammar=&quot;NE : {&lt;NNP|NNPS|NN&gt;*&lt;DT&gt;?&lt;NNP|NNPS|JJ|NNS|NN&gt;+}&quot; --path=./tests/test_data/english_text_long.txt 
+</code></pre>
+
+<p>or</p>
+<pre><code class="bash">$ feet extract --registry=my_registry --entity=country --grammar=&quot;NE : {&lt;NNP|NNPS|NN&gt;*&lt;DT&gt;?&lt;NNP|NNPS|JJ|NNS|NN&gt;+}&quot; --text=&quot;I want to buy flight tickets for Japan&quot; 
+</code></pre>
+
+<h2 id="http-api-server-tools">HTTP API server tools</h2>
+<p>Follow the Quick Start instructions. Make sure a redis-server is running.
+Make and update your favorite configuration file (.env or yml).</p>
+<p>From feet directory you can use <code>$ ./bin/feet</code> command or you can directly
+call <code>$ feet</code> if you have been through complete installation via setuptools.</p>
+<p><strong>Feet run !</strong></p>
+<p>Launch the server:</p>
+<pre><code class="bash">$ feet run --host=127.0.0.1 --port=8888 
+</code></pre>
+
+<p>Feet proposes a Restful API. It's easy to guess where you are from the url. In order
+to manage your entities you can group them into different databases,
+prefixes and registries. The database identifier follows Redis rule. A prefix and a registry can be any
+alphanumeric urlencoded characters strings.</p>
+<p><strong>Get list of registries</strong></p>
+<pre><code class="bash">curl -H &quot;Accept: application/json&quot; -X GET http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/
+--&gt; 200 {&quot;registries&quot;:[&quot;registry1&quot;,&quot;registry2&quot;]}
+</code></pre>
+
+<p><strong>Add a registry</strong></p>
+<pre><code class="bash">curl -H &quot;Content-Type: application/json&quot; -X POST http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/
+--&gt; 200 OK
+</code></pre>
+
+<p><strong>Delete a registry</strong></p>
+<pre><code class="bash">curl -H &quot;Content-Type: application/json&quot; -X DELETE http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/
+--&gt; 200 OK
+</code></pre>
+
+<p><strong>Get list of registered entities</strong></p>
+<pre><code class="bash">curl -H &quot;Accept: application/json&quot; -X GET http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/
+</code></pre>
+
+<p>Example:</p>
+<pre><code class="bash">http://localhost:8888/database/0/prefix/geographic/registry/my_registry/entities/
+--&gt; 200 {&quot;entities&quot;:[&quot;city&quot;,&quot;country&quot;]}
+</code></pre>
+
+<p><strong>Add an entity</strong></p>
+<pre><code class="bash">curl -H &quot;Content-Type: application/json&quot; -X POST http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/
+--&gt; 200 OK
+</code></pre>
+
+<p><strong>Delete an entity</strong></p>
+<pre><code class="bash">curl -H &quot;Content-Type: application/json&quot; -X DELETE http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/
+--&gt; 200 OK
+</code></pre>
+
+<p><strong>Getting an entity provides the list of languages supported by the entity</strong></p>
+<pre><code class="bash">curl -H &quot;Accept: application/json&quot; -X GET http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/
+--&gt; 200 {&quot;languages&quot;:[&quot;english&quot;]}
+</code></pre>
+
+<p><strong>Add a language for an entity</strong></p>
+<pre><code class="bash">curl -H &quot;Content-Type: application/json&quot; -X POST http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/lang/&lt;lang_id&gt;/
+--&gt; 200 OK
+</code></pre>
+
+<p>The list of language identifiers that we use comes from NLTK. You must follow
+this list if you want feet to branch correctly into NLTK. </p>
+<p><strong>Delete a language for an entity</strong></p>
+<pre><code class="bash">curl -H &quot;Content-Type: application/json&quot; -X DELETE http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/lang/&lt;lang_id&gt;/
+--&gt; 200 OK
+</code></pre>
+
+<p><strong>Geting a language provides the number of terms for this language</strong></p>
+<pre><code class="bash">curl -H &quot;Accept: application/json&quot; -X GET http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/lang/&lt;lang_id&gt;/
+--&gt; 200 {&quot;count&quot;:249}
+</code></pre>
+
+<p>This allows to get the total number of terms for a language.</p>
+<p><strong>Change the name of language</strong></p>
+<pre><code class="bash">curl -H &quot;Content-Type: application/json&quot; -X PUT -d '{&quot;new_name&quot;: &quot;english&quot;}'
+http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/lang/&lt;lang_id&gt;/
+--&gt; 200 OK 
+</code></pre>
+
+<p><strong>Create/add list of terms</strong></p>
+<pre><code class="bash">curl -H &quot;Content-Type: application/json&quot; -X POST/PUT -d '{&quot;entities&quot;: [&quot;Paris&quot;,&quot;Tokyo&quot;]}' http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/lang/&lt;lang_id&gt;/terms/
+--&gt; 200 OK
+</code></pre>
+
+<p><strong>Get list of terms for an entity and a language</strong></p>
+<pre><code class="bash">curl -H &quot;Accept: application/json&quot; -X GET -d '{&quot;page&quot;:0,&quot;count&quot;:10}' http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/lang/&lt;lang_id&gt;/terms/?page=0&amp;count=10
+--&gt; 200 {&quot;terms&quot;:[&quot;Paris&quot;,&quot;Tokyo&quot;]}
+</code></pre>
+
+<p><strong>Delete all terms for an entity and a language</strong></p>
+<pre><code class="bash">curl -H &quot;Content-Type: application/json&quot; -X DELETE -d '{&quot;entities&quot;: [&quot;Paris&quot;]}' http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/entities/&lt;entity_name&gt;/languages/&lt;lang_id&gt;/terms/
+--&gt; 200 OK
+</code></pre>
+
+<p><strong>Get a term</strong></p>
+<pre><code class="bash">curl -H &quot;Accept: application/json&quot; -X GET http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/lang/&lt;lang_id&gt;/terms/Tokyo/
+--&gt; 200 Tokyo
+</code></pre>
+
+<p><strong>Add a term</strong></p>
+<pre><code class="bash">curl &quot;Content-Type: application/json&quot; -X POST  http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/lang/&lt;lang_id&gt;/terms/Tokyo/
+--&gt; 200 OK
+</code></pre>
+
+<p><strong>Delete a term</strong></p>
+<pre><code class="bash">curl &quot;Content-Type: application/json&quot; -X DELETE 
+http://localhost:8888/database/&lt;database&gt;/prefix/&lt;prefix_name&gt;/registries/&lt;registry&gt;/entities/&lt;entity_name&gt;/lang/&lt;lang_id&gt;/terms/Tokyo/
+--&gt; 200 OK
+</code></pre>
+
+<p><strong>Extract entities from a text</strong></p>
+<pre><code class="bash">curl -H &quot;Accept: application/json&quot; -H &quot;Content-Type: application/json&quot; -X POST -d '{&quot;test&quot;:&quot;I am looking for tickets for Tokyo in Japan&quot;, &quot;grammar&quot;:&quot;NE : {&lt;NNP|NNPS|NN&gt;*&lt;DT&gt;?&lt;NNP|NNPS|JJ|NNS|NN&gt;+}&quot;}'
+http://localhost:8888/database/0/prefix/geographic/entities/city/languages/english/extract/
+--&gt; 200 {&quot;result&quot;:[&quot;Tokyo&quot;]}
+</code></pre>
+
+<p><strong>TODO: Search for entities</strong></p>
+<pre><code class="bash">curl -H &quot;Accept: application/json&quot; -H &quot;Content-Type: application/json&quot; -X GET
+http://localhost:8888/database/0/prefix/geographic/entities/city/languages/english/search?q=Tok&amp;page=0&amp;count=10
+--&gt; 200 {&quot;result&quot;:[&quot;Tokyo&quot;]}
+</code></pre>
+
+<h2 id="how-to-use">How to use</h2>
+<p>Follow the quick start installation.</p>
+<p>Using Feet relies on three classes:</p>
+<ul>
+<li>Registry</li>
+<li>Dictionary</li>
+<li>Extractor</li>
+</ul>
+<p>(Don't forget to run a Redis server)</p>
+<h3 id="key-prefix">Key prefix</h3>
+<p>Before talking about the classes it's important to explain the concept of key
+prefix. As we are using a Redis database to store all data they can be organized
+by a key prefix. It means that all keys used to store information about
+registries, dictionaries etc. will be prefixed. It provides you with a first
+level of organisation for your data.</p>
+<pre><code>+------------------------------------+
+|  +-------------------------------+ |
+|  |  +--------------------------+ | |
+|  |  |                          | | |
+|  |  |     Term                 | | |
+|  |  |                          | | |
+|  |  | Entity/Dictionary        | | |
+|  |  +--------------------------+ | |
+|  |Registry                       | |
+|  +-------------------------------+ |
+|Key prefix                          |
++------------------------------------+
+</code></pre>
+
+<h3 id="registries">Registries</h3>
+<p>Each registry manages a list of dictionaries. It's a second level of
+organisation after key prefixes.</p>
+<p>Get the list of registries for a specific key prefix:</p>
+<pre><code class="python">from feet.entities.registry import Registry
+
+registries = Registry.list(key_prefix='my_prefix')
+</code></pre>
+
+<p>Add a registry:</p>
+<pre><code class="python">from feet.entities.registry import Registry
+
+registry = Registry.find_or_create('my_registry',
+    key_prefix='my_prefix',
+    redis_host='127.0.0.1',
+    redis_port=6379,
+    redis_db=0)
+</code></pre>
+
+<p>Get the list of dictionaries in a registry:</p>
+<pre><code class="python">registry.dictionaries()
+</code></pre>
+
+<p>Add/get a dictionary in a registry:</p>
+<pre><code class="python"># dictionary is ot type Dictionary by default
+dictionary = registry.get_dict('entity_name')
+</code></pre>
+
+<p>Delete a dictionary:</p>
+<pre><code class="python">registry.del_dict('entity_name')
+</code></pre>
+
+<p>Delete a registry:</p>
+<pre><code class="python"># This will automatically delete all related dictionaries
+registry.delete()
+</code></pre>
+
+<h3 id="make-a-dictionary-for-an-entity">Make a dictionary for an entity</h3>
+<pre><code class="python">from __future__ import print_function
+from feet.entities.registry import Registry
+
+# Get an entity dictionary
+registry = Registry.find_or_create('my_registry',
+    key_prefix='test_feet',
+    redis_host='127.0.0.1',
+    redis_port=6379,
+    redis_db=0)
+entity = registry.get_dict('events')
+
+# Load a file that contains a list of entities
+count = entity.load_file('./test_data/events_ja.txt')
+print('%d entities imported' % count)
+</code></pre>
+
+<p>where 'events_ja.txt' file contains a list of marketing events with each event
+name on a different line.</p>
+<p>load_file method returns the number of terms that have been succesfully
+imported.</p>
+<p>If you want to deal with different file formats you can inherit from Dictionary
+and override get_entities method. It could be as simple as:</p>
+<pre><code class="python">from __future__ import print_function
+from feet.entities.registry import Registry
+from feet.entities.dictionary import Dictionary
+
+class MyDictionary(Dictionary):
+    def get_entities(self, entities_file):
+        handle = open(entities_file, &quot;r&quot;)
+        for entity in handle.readlines():
+          yield entity
+
+# Get an entity dictionary
+registry = Registry.find_or_create('my_registry',
+    dict_class=MyDictionary,
+    key_prefix='test_feet',
+    redis_host='127.0.0.1',
+    redis_port=6379,
+    redis_db=0)
+entity = registry.get_dict('my_entity')
+
+# Load a file that contains a list of entities
+count = entity.load_file('my_formatted_file.my')
+print('%d entities imported' % count)
+</code></pre>
+
+<p>This will allow you to build your own importers for different formats e.g. 
+JSON, CSV, XML, RDF etc.</p>
+<p>A CSV import tool is available as CSVDictionary in feet.entities.dictionary:</p>
+<pre><code class="python">from __future__ import print_function
+from feet.entities.dictionary import CSVDictionary
+
+registry = Registry.find_or_create('my_registry',
+  dict_class=CSVDictionary)
+cities = registry.get_dict('cities')
+count = cities.load_file('./test_data/world-cities.csv') 
+</code></pre>
+
+<h3 id="extract-entities-from-a-text-with-a-dictionary">Extract entities from a text with a dictionary</h3>
+<pre><code class="python">from __future__ import print_function
+from feet.entities.extractor import Extractor
+from feet.entities.dictionary import CSVDictionary
+
+registry = Registry.find_or_create('my_registry',
+  dict_class=CSVDictionary)
+cities = registry.get_dict('cities')
+count = cities.load_file('./test_data/world-cities.csv') 
+
+# Get an entity extractor engine
+# Specify a grammar to extract chunks of candidates for 'NE' Named Entities
+extractor = Extractor(
+    ref_dictionary=cities,
+    grammar='NE : {&lt;NNP|NNPS|NN&gt;*&lt;DT&gt;?&lt;NNP|NNPS|JJ|NNS|NN&gt;+}')
+# Ask for entities from a text (it must be UTF8 encoded)
+result = extractor.extract(utf8_encoded_text)
+
+# Display results
+entities = []
+for element in results[0]:
+    if element['entity_found'] == 1:
+      entities = list(set(entities).union(element['entity_candidates']))
+print(entities)
+</code></pre>
+
+<h3 id="bonus-extracting-dates-in-japanese">Bonus: Extracting dates in Japanese</h3>
+<pre><code class="python">from feet.entities.jptools import JAParser
+
+dates = JAParser().extract_dates(utf8_encoded_text)
+</code></pre>
+
+<h2 id="deploy-with-docker">Deploy with Docker</h2>
+<p>Make sure the REDIS_HOST in your configuration file (see Quick start
+configuration section) is set to the name of redis service defined in the
+docker_compose.yml file. For example:</p>
+<pre><code>REDIS_HOST=redis
+</code></pre>
+
+<p>Double check that SERVER_PORT matches the open port of your container as
+defined in docker-compose.yml file. For example:</p>
+<pre><code>SERVER_PORT=5000
+</code></pre>
+
+<p>Start a container for development (version of docker-compose &gt; v1.9.0):</p>
+<pre><code class="bash">$ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+</code></pre>
+
+<p>The Dockerfile describes an image that includes Neologd dictionary. Installation
+of Neologd takes time and space, however it will provide the best quality in
+terms of entity extraction. You can also rely only on macacb-ipadic-utf8 by
+commenting this line in Dockerfile:</p>
+<pre><code>RUN git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git &amp;&amp; cd mecab-ipadic-neologd &amp;&amp; ./bin/install-mecab-ipadic-neologd -y 
+</code></pre>
+
+<p>Make sure that either .env and/or feet.yaml configuration files specify the
+right path to access the dictionary:</p>
+<p>In feet.yaml:</p>
+<pre><code class="yaml"># Japanese POS Tagger MeCab
+mecab:
+    mecabdict= '/usr/lib/mecab/dic/mecab-ipadic-neologd'
+</code></pre>
+
+<p>In .env:</p>
+<pre><code>MECAB_DICT=/usr/local/lib/mecab/dic/mecab-ipadic-neologd
+</code></pre>
+
+<h2 id="getting-help">Getting help</h2>
+<p>To get help with feet, please contact Romary on romary.dupuis@altarika.com</p>
+<!-- References --></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+                <center>Copyright &copy; 2016 <a href="https://github.com/romaryd">Romary Dupuis</a>, Maintained by <a href="http://www.altarika.com/">Altarika</a></center>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+        <script src="./js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
